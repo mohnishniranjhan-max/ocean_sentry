@@ -1,0 +1,87 @@
+# ==============================================================================
+# Ocean Sentry Backend - .gitignore
+# FastAPI + PyTorch DirectML / CUDA + Scikit-learn + CMEMS/Argo Pipelines
+# ==============================================================================
+
+# Virtual Environments
+venv/
+venv_gpu/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Environment variables & secrets
+.env
+.env.*
+*.env
+*.local
+!*.example
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Build & Packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Testing, coverage & linting
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# Oceanographic Data Directories & Files (CMEMS, Argo, etc.)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+data/training/*
+!data/training/.gitkeep
+
+# Large scientific data files
+*.nc
+*.nc4
+*.grib
+*.grb
+*.grb2
+*.parquet
+*.h5
+*.hdf5
+
+# Trained ML Models, Weights & Checkpoints
+ml/models/*
+!ml/models/.gitkeep
+test.joblib
+*.joblib
+*.pt
+*.pth
+*.onnx
+*.pkl
+*.pickle
+*.ckpt
+*.safetensors
+
+# Logs
+logs/
+*.log
+
+# IDE & OS
+.DS_Store
+Thumbs.db
+[Dd]esktop.ini
+.vscode/
+.idea/
+*.swp
+*.swo

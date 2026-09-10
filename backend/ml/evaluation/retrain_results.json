@@ -1,0 +1,92 @@
+{
+  "input_data": {
+    "source": "collocated_qc.parquet",
+    "records": 3268,
+    "stations": 34,
+    "time_range": [
+      "2026-08-09 12:48:00",
+      "2026-08-20 05:33:12"
+    ],
+    "depth_range": [
+      0.0,
+      922.039978
+    ],
+    "salinity_range": [
+      30.885,
+      35.160706
+    ],
+    "temperature_range": [
+      6.887,
+      29.750999
+    ],
+    "wmo_2903434_records": 0
+  },
+  "split": {
+    "training_start": "2026-08-09 12:48:00",
+    "training_end": "2026-08-18 14:13:55.999000",
+    "validation_start": "2026-08-18 14:14:29",
+    "validation_end": "2026-08-20 05:33:12",
+    "training_records": 2277,
+    "validation_records": 991,
+    "cutoff": "2026-08-18 14:13:55.999000"
+  },
+  "features": [
+    "latitude",
+    "longitude",
+    "depth",
+    "model_temperature",
+    "observed_temperature",
+    "temperature_difference",
+    "abs_temperature_difference",
+    "model_salinity",
+    "observed_salinity",
+    "salinity_difference",
+    "abs_salinity_difference",
+    "model_current_u",
+    "model_current_v",
+    "hour",
+    "day_of_year",
+    "spatial_distance_km"
+  ],
+  "model_config": {
+    "type": "IsolationForest",
+    "n_estimators": 200,
+    "contamination": 0.1,
+    "max_samples": "auto",
+    "random_state": 42
+  },
+  "training_results": {
+    "anomaly_count": 228,
+    "anomaly_rate": 0.1001,
+    "score_min": -0.129714,
+    "score_max": 0.146682,
+    "score_mean": 0.071347
+  },
+  "validation_results": {
+    "anomaly_count": 266,
+    "anomaly_rate": 0.2684,
+    "score_min": -0.100584,
+    "score_max": 0.102828,
+    "score_mean": 0.031985,
+    "score_std": 0.044489,
+    "normalized_score_mean": 0.3483,
+    "normalized_score_std": 0.2187,
+    "high_count": 34,
+    "warning_count": 232,
+    "normal_count": 725,
+    "feature_analysis": {
+      "abs_temp_diff_anomalies": 0.935,
+      "abs_temp_diff_normals": 0.374,
+      "abs_sal_diff_anomalies": 0.264,
+      "abs_sal_diff_normals": 0.034,
+      "depth_anomalies": 54.0,
+      "depth_normals": 343.8
+    }
+  },
+  "leakage_checks": {
+    "temporal": "PASS \u2014 max(train_ts) < min(val_ts)",
+    "feature": "PASS \u2014 no future-looking or target-derived features",
+    "preprocessing": "PASS \u2014 scaler.fit() and median imputation on training set only",
+    "target_derived": "PASS \u2014 no labels exist; unsupervised model"
+  }
+}
